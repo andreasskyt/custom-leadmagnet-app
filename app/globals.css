@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #2b3327;         /* Primær mørkegrøn/grå */
+  --foreground: #ffffff;         /* Primær tekstfarve */
+  --green-primary: #2f3a2c;      /* Dyb grøn */
+  --green-secondary: #475d43;    /* Rig grøn */
+  --accent-beige: #bbac8b;       /* Beige/guld CTA */
+  --neutral-sand: #cbc4b8;       /* Lys sand til kort/sektioner */
+  --accent-blue: var(--green-primary); /* Bagudkompatibilitet til eksisterende klassenavne */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
+
+@keyframes minGlow {
+  0% { text-shadow: 0 0 9px #ffffff; }
+  50% { text-shadow: 0 0 5px #ffffff; }
+  100% { text-shadow: 0 0 9px #ffffff; }
+}
+
+
+.min-glow {
+  animation: minGlow 3s ease-in-out infinite;
+  color: #ffffff; /* Rød tekst */
+}
+
+
+@layer components {
+  .heading-1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-foreground;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    letter-spacing: 0.5px;
+  }
+
+  .heading-2 {
+    @apply text-3xl md:text-4xl font-bold text-foreground;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    letter-spacing: 0.3px;
+  }
+
+  .heading-3 {
+    @apply text-2xl md:text-3xl font-bold text-foreground;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+  }
+
+  .paragraph {
+    @apply text-base md:text-lg text-foreground/80;
+  }
+
+  .button-primary {
+    @apply px-6 py-3 rounded-lg font-semibold transition-colors duration-200;
+    background-color: var(--accent-beige);
+    color: var(--background);
+  }
+  .button-primary:hover {
+    background-color: color-mix(in oklab, var(--accent-beige) 85%, var(--green-secondary) 15%);
+  }
+  .button-primary:focus {
+    @apply outline-none ring-2 ring-offset-2;
+    --tw-ring-color: var(--accent-beige);
+    --tw-ring-offset-color: var(--background);
+  }
+
+  .button-secondary {
+    @apply px-6 py-3 rounded-lg font-semibold transition-colors duration-200;
+    background-color: var(--green-primary);
+    color: var(--accent-beige);
+  }
+  .button-secondary:hover {
+    background-color: color-mix(in oklab, var(--green-primary) 85%, var(--accent-beige) 15%);
+  }
+  .button-secondary:focus {
+    @apply outline-none ring-2 ring-offset-2;
+    --tw-ring-color: var(--green-primary);
+    --tw-ring-offset-color: var(--background);
+  }
+}
+
+
+/* Mere "kaotiske" gradient-bevægelser */
+@keyframes gradient-5 {
+  0% { background-position: 40% 10%; }
+  25% { background-position: 5% 60%; }
+  50% { background-position: 80% 35%; }
+  75% { background-position: 20% 90%; }
+  100% { background-position: 40% 10%; }
+}
+
+@keyframes gradient-6 {
+  0% { background-position: 0% 100%; }
+  20% { background-position: 100% 10%; }
+  45% { background-position: 70% 80%; }
+  70% { background-position: 10% 20%; }
+  100% { background-position: 0% 100%; }
+}
+
+@keyframes gradient-7 {
+  0% { background-position: 90% 30%; }
+  30% { background-position: 30% 70%; }
+  60% { background-position: 60% 10%; }
+  100% { background-position: 90% 30%; }
+}
+
+/* Ekstra variationer */
+@keyframes gradient-8 {
+  0% { background-position: 10% 10%; }
+  25% { background-position: 90% 20%; }
+  50% { background-position: 40% 90%; }
+  75% { background-position: 80% 40%; }
+  100% { background-position: 10% 10%; }
+}
+
+@keyframes gradient-9 {
+  0% { background-position: 50% 50%; }
+  33% { background-position: 0% 100%; }
+  66% { background-position: 100% 0%; }
+  100% { background-position: 50% 50%; }
+}
+
+
+@keyframes buttonGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(56, 105, 49, 0.5),
+                0 0 10px rgba(56, 105, 49, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(56, 105, 49, 0.7),
+                0 0 20px rgba(56, 105, 49, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(56, 105, 49, 0.5),
+                0 0 10px rgba(56, 105, 49, 0.3);
+  }
+}
+
+.animate-gradient-1 {
+  animation: gradient-1 2s ease infinite;
+  background-size: 400% 400%;
+}
+
+.animate-gradient-2 {
+  animation: gradient-2 11s ease infinite;
+  background-size: 400% 400%;
+}
+
+.animate-gradient-3 {
+  animation: gradient-3 10s ease-in infinite;
+  background-size: 400% 400%;
+}
+
+.animate-gradient-4 {
+  animation: gradient-4 15s ease-out infinite;
+  background-size: 400% 400%;
+}
+
+.animate-gradient-5 {
+  animation: gradient-5 35s ease-out infinite;
+  background-size: 400% 400%;
+}
+
+.animate-gradient-6 {
+  animation: gradient-6 34s ease-in-out infinite;
+  background-size: 400% 400%;
+}
+
+.animate-gradient-7 {
+  animation: gradient-7 50s ease-in-out infinite;
+  background-size: 400% 400%;
+}
+
+.animate-gradient-8 {
+  animation: gradient-8 42s ease-in-out infinite;
+  background-size: 500% 500%;
+}
+
+.animate-gradient-9 {
+  animation: gradient-9 28s ease-in-out infinite;
+  background-size: 400% 400%;
+}
+
+.button-glow {
+  animation: buttonGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes heading-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heading-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.heading-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tilføj disse nye styles for at sikre at gradienterne vises korrekt */
+.bg-gradient-to-br, .bg-gradient-to-tr, .bg-gradient-to-bl {
+  background-size: 200% 200%;
+  background-position: center;
+}
+
+/* Fjern @theme inline da det ikke er standard CSS */
+/* body font: nu anvendt via poppins.className i layout.tsx */
+/* body {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+} */
+
+.glow-overlay {
+  --glow-size: 25rem;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: var(--glow-opacity, 0);
+  mask: radial-gradient(
+    var(--glow-size) var(--glow-size) at var(--glow-x) var(--glow-y),
+    var(--glow-color) 1%,
+    transparent 50%
+  );
+  transition: 400ms mask ease;
+  will-change: mask;
+}
