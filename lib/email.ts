@@ -25,7 +25,7 @@ export async function sendAuditEmail(options: {
   }
   const html = buildEmailHtml(options.result, options.contact, options.notionPageUrl)
   await transporter.sendMail({
-    from: `"Andreas @ SKYT Systems" <${process.env.SMTP_FROM}>`,
+    from: `"Andreas The Systems Guy" <${process.env.SMTP_FROM}>`,
     to: options.to,
     subject: EMAIL_SUBJECT,
     html,
