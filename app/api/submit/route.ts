@@ -34,8 +34,8 @@ export async function POST(req: NextRequest) {
     // Step 3: Notion — duplicate template and populate
     const notionPageUrl = await duplicateAndPopulateTemplate(assessmentResult, contactData, aiContent)
 
-    // Step 4: Notify in parallel
-    await Promise.all([
+    // Step 4: Notify in parallel (non-fatal)
+    await Promise.allSettled([
       sendSlackNotification(assessmentResult, contactData, notionPageUrl),
       sendAuditEmail({ to: contactData.email, name: contactData.name, result: assessmentResult, contact: contactData, notionPageUrl }),
     ])
