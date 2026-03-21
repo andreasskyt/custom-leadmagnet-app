@@ -119,7 +119,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 11,
     pillar: 3,
-    text: 'How do you track downstream B2C results for your clients: appointments generated, show-up rates, close rates?',
+    text: 'How do you track B2C results for your clients: appointments generated, show-up rates, close rates?',
     options: [
       { label: 'We don\'t track it systematically', score: 1 },
       { label: 'Tracked manually in a sheet, updated inconsistently', score: 2 },

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import Image from 'next/image'
 import './globals.css'
 
 const poppins = Poppins({
@@ -38,6 +39,11 @@ export default function RootLayout({
           <div className="absolute inset-0 bg-gradient-to-tr from-[#ffffff]/70 via-[#000000]/100 to-[#2f3a2c]/80 animate-gradient-7"></div>
           <div className="absolute inset-0 bg-gradient-to-br from-[#1a1f18]/0 via-[#2f3a2c]/25 to-transparent animate-gradient-8"></div>
           <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-[#2b3327]/20 to-[#1a1f18]/0 animate-gradient-9"></div>
+        </div>
+
+        {/* Logo */}
+        <div className="fixed top-4 left-4 z-20">
+          <Image src="/logos/S-greenbeige.png" alt="SKYT Systems Logo" width={500} height={250} className="h-[60px] w-auto" />
         </div>
 
         {/* Content */}
