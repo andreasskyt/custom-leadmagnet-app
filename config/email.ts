@@ -1,7 +1,7 @@
 import type { AssessmentResult, ContactData } from '@/lib/types'
 import { SCORE_THRESHOLDS } from './scoring'
 
-export const EMAIL_SUBJECT = 'Your SKYT Systems Agency Audit Results Are Ready'
+export const EMAIL_SUBJECT = 'Your custom agency operations roadmap'
 
 export function buildEmailHtml(
   result: AssessmentResult,
@@ -28,6 +28,8 @@ export function buildEmailHtml(
     .score-label { color: rgba(255,255,255,0.7); font-size: 14px; }
     .score-value { color: #bbac8b; font-size: 14px; font-weight: 600; }
     .cta-button { display: block; background-color: #bbac8b; color: #2d5a27; text-align: center; padding: 14px 32px; border-radius: 8px; font-size: 16px; font-weight: 700; text-decoration: none; margin: 32px 0 0; }
+    .cta-secondary { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.6; margin: 24px 0 0; }
+    .cta-secondary a { color: #bbac8b; text-decoration: underline; }
     .footer { color: rgba(255,255,255,0.4); font-size: 12px; text-align: center; margin-top: 32px; }
   </style>
 </head>
@@ -53,9 +55,44 @@ export function buildEmailHtml(
       <p style="margin-top:24px">Your full custom agency operations report — including a tailored systems roadmap, your specific bottlenecks, and a quick win — is ready in Notion.</p>
 
       <a href="${notionPageUrl}" class="cta-button">View Your Full Report →</a>
+
+      <p class="cta-secondary">Want to go a level deeper? You can schedule a free Agency Systems Consultation call with me directly here: <a href="https://skytsystems.com">skytsystems.com</a></p>
     </div>
     <p class="footer">SKYT Systems · audit.skytsystems.com<br/>You're receiving this because you completed our Agency Operations Audit.</p>
   </div>
 </body>
 </html>`
 }
+
+/*
+export function buildEmailText(
+  result: AssessmentResult,
+  contact: ContactData,
+  notionPageUrl: string
+): string {
+  const bucket = SCORE_THRESHOLDS.find(t => t.bucket === result.outcomeBucket)
+  const { p1, p2, p3, p4, p5, p6 } = result.pillarScores
+
+  return `Hey ${contact.name},
+
+Your agency operations audit is done and your custom report is ready.
+
+Your outcome: ${bucket?.label ?? result.outcomeBucket}
+
+Pillar scores:
+- Onboarding & Delivery:          ${p1}/16
+- Visibility & Data:               ${p2}/16
+- Client Performance & Reporting:  ${p3}/16
+- Automation & Systems:            ${p4}/16
+- B2B Growth:                      ${p5}/16
+- Team & Founder:                  ${p6}/16
+- Total:                           ${result.totalScore}/96
+
+Your full report is here — it includes your specific bottleneck diagnosis, a second area to watch, a quick win you can action this week, and the full systems roadmap:
+
+${notionPageUrl}
+
+Talk soon,
+Andreas`
+}
+*/

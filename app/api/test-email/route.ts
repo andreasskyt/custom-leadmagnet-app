@@ -4,7 +4,7 @@ import { calculateScores } from '@/lib/scoring'
 import { sendAuditEmail } from '@/lib/email'
 
 export async function POST(req: NextRequest) {
-  let payload: SubmitPayload
+  let payload: SubmitPayload & { notionPageUrl?: string }
   try {
     payload = (await req.json()) as SubmitPayload
   } catch {
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       name: contactData.name,
       result: assessmentResult,
       contact: contactData,
-      notionPageUrl: 'https://audit.skytsystems.com',
+      notionPageUrl: payload.notionPageUrl ?? 'https://audit.skytsystems.com',
     })
 
     return NextResponse.json({ success: true })

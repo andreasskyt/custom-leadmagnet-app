@@ -81,6 +81,8 @@ async function main() {
     score: Number(score),
   })).sort((a, b) => a.questionId - b.questionId)
 
+  const notionPageUrl = session.notion_page_url ?? 'https://audit.skytsystems.com'
+
   const payload = {
     answers,
     contactData: {
@@ -89,9 +91,11 @@ async function main() {
       businessName: session.business_name,
       tools: session.tools ?? [],
     },
+    notionPageUrl,
   }
 
   console.log(`\nSending test email to ${session.email} for ${session.name} / ${session.business_name}…`)
+  console.log(`Notion URL: ${notionPageUrl}`)
 
   const submitRes = await fetch('http://localhost:3000/api/test-email', {
     method: 'POST',

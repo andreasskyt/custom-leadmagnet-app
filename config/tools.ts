@@ -7,7 +7,9 @@ export const TOOL_OPTIONS: string[] = [
   'Monday / Asana',
   'Notion',
   'Stripe / Whop',
-  'HubSpot',
+  'ChatGPT',
+  'Claude',
+  'Airtable',
   'ClickUp',
   'Custom / Other',
 ]
