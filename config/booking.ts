@@ -1,1 +1,1 @@
-export const BOOKING_LINK = 'https://calendar.app.google/your-booking-link'
+export const BOOKING_LINK = 'https://skytsystems.com'
