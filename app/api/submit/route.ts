@@ -17,8 +17,8 @@ export async function POST(req: NextRequest) {
   const { answers, contactData } = payload
 
   // Basic validation
-  if (!answers || !Array.isArray(answers) || answers.length !== 24) {
-    return NextResponse.json({ error: 'Expected 24 answers' }, { status: 400 })
+  if (!answers || !Array.isArray(answers) || answers.length !== 15) {
+    return NextResponse.json({ error: 'Expected 15 answers' }, { status: 400 })
   }
   if (!contactData?.name || !contactData?.email || !contactData?.businessName) {
     return NextResponse.json({ error: 'Missing required contact fields' }, { status: 400 })

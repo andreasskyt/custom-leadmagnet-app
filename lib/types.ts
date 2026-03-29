@@ -45,6 +45,7 @@ export interface ContactData {
   email: string
   businessName: string
   tools: string[]
+  teamSize?: string
 }
 
 export interface ClaudeResponse {

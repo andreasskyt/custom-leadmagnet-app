@@ -15,11 +15,12 @@ export default function ContactForm({ onSubmit, isLoading, error }: ContactFormP
   const [email, setEmail] = useState('')
   const [businessName, setBusinessName] = useState('')
   const [tools, setTools] = useState<string[]>([])
+  const [teamSize, setTeamSize] = useState('')
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!name.trim() || !email.trim() || !businessName.trim()) return
-    onSubmit({ name: name.trim(), email: email.trim(), businessName: businessName.trim(), tools })
+    if (!name.trim() || !email.trim() || !businessName.trim() || !teamSize) return
+    onSubmit({ name: name.trim(), email: email.trim(), businessName: businessName.trim(), tools, teamSize })
   }
 
   const inputClass = `
@@ -80,6 +81,28 @@ export default function ContactForm({ onSubmit, isLoading, error }: ContactFormP
           />
         </div>
 
+        <div>
+          <label className="block text-sm font-medium text-white/70 mb-2">Team size</label>
+          <select
+            value={teamSize}
+            onChange={e => setTeamSize(e.target.value)}
+            required
+            className={`${inputClass} cursor-pointer`}
+          >
+            <option value="" disabled>Select team size</option>
+            <option value="Just me, one-man-army">Just me, one-man-army</option>
+            <option value="2-3">2–3</option>
+            <option value="3-5">3–5</option>
+            <option value="5-8">5–8</option>
+            <option value="8-12">8–12</option>
+            <option value="12-15">12–15</option>
+            <option value="15-20">15–20</option>
+            <option value="20-25">20–25</option>
+            <option value="25-30">25–30</option>
+            <option value="30+">30+</option>
+          </select>
+        </div>
+
         <ToolSelector selected={tools} onChange={setTools} />
 
         {error && (
@@ -90,7 +113,7 @@ export default function ContactForm({ onSubmit, isLoading, error }: ContactFormP
 
         <button
           type="submit"
-          disabled={isLoading || !name.trim() || !email.trim() || !businessName.trim()}
+          disabled={isLoading || !name.trim() || !email.trim() || !businessName.trim() || !teamSize}
           className="button-primary w-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? 'Starting…' : 'Start the Audit →'}

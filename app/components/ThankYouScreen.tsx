@@ -49,7 +49,7 @@ export default function ThankYouScreen({ name }: ThankYouScreenProps) {
 
         <div className="border-t border-white/10 pt-8">
           <p className="text-white/50 text-sm mb-4">
-            Want to go deeper? Book a free 30-minute Systems Audit call.
+            Want to go a step deeper? Book a free 30-minute Systems Audit call with me, Andreas.
           </p>
           <a
             href={BOOKING_LINK}

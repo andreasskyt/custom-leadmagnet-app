@@ -1,5 +1,18 @@
 import type { Answer, AssessmentResult, OutcomeBucket, PillarScores } from './types'
 import { SCORE_THRESHOLDS } from '@/config/scoring'
+import { QUESTIONS } from '@/config/questions'
+
+// Compute max possible score per pillar (numQuestions × 4)
+const maxPerPillar: Record<number, number> = {}
+for (const q of QUESTIONS) {
+  maxPerPillar[q.pillar] = (maxPerPillar[q.pillar] ?? 0) + 4
+}
+
+// Normalize a raw pillar score to the 0–16 scale regardless of question count
+function normalizePillarScore(rawScore: number, pillar: number): number {
+  const max = maxPerPillar[pillar] ?? 16
+  return Math.round((rawScore / max) * 16)
+}
 
 function scoreBar(score: number): string {
   const filled = Math.round((score / 16) * 10)
@@ -7,15 +20,19 @@ function scoreBar(score: number): string {
 }
 
 export function calculateScores(answers: Answer[]): AssessmentResult {
-  const pillarScores: PillarScores = { p1: 0, p2: 0, p3: 0, p4: 0, p5: 0, p6: 0 }
+  const rawPillarScores: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 }
 
   for (const answer of answers) {
-    if (answer.pillar === 1) pillarScores.p1 += answer.score
-    else if (answer.pillar === 2) pillarScores.p2 += answer.score
-    else if (answer.pillar === 3) pillarScores.p3 += answer.score
-    else if (answer.pillar === 4) pillarScores.p4 += answer.score
-    else if (answer.pillar === 5) pillarScores.p5 += answer.score
-    else if (answer.pillar === 6) pillarScores.p6 += answer.score
+    rawPillarScores[answer.pillar] += answer.score
+  }
+
+  const pillarScores: PillarScores = {
+    p1: normalizePillarScore(rawPillarScores[1], 1),
+    p2: normalizePillarScore(rawPillarScores[2], 2),
+    p3: normalizePillarScore(rawPillarScores[3], 3),
+    p4: normalizePillarScore(rawPillarScores[4], 4),
+    p5: normalizePillarScore(rawPillarScores[5], 5),
+    p6: normalizePillarScore(rawPillarScores[6], 6),
   }
 
   const totalScore =
