@@ -42,17 +42,21 @@ async function notionPost(path: string, body: unknown): Promise<unknown> {
   return res.json()
 }
 
-async function notionPatch(path: string, body: unknown): Promise<unknown> {
-  const res = await fetch(`${NOTION_API_BASE}${path}`, {
-    method: 'PATCH',
-    headers: notionHeaders(),
-    body: JSON.stringify(body),
-  })
-  if (!res.ok) {
+async function notionPatch(path: string, body: unknown, retries = 3): Promise<unknown> {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const res = await fetch(`${NOTION_API_BASE}${path}`, {
+      method: 'PATCH',
+      headers: notionHeaders(),
+      body: JSON.stringify(body),
+    })
+    if (res.ok) return res.json()
     const text = await res.text()
+    if (res.status >= 500 && attempt < retries) {
+      await sleep(500 * attempt)
+      continue
+    }
     throw new Error(`Notion PATCH ${path} failed ${res.status}: ${text}`)
   }
-  return res.json()
 }
 
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms))
