@@ -57,58 +57,49 @@ Pillar scores:
 - P6 Team & Founder: ${p6} / 16
 - Total: ${result.totalScore} / 96
 
-All 15 answers:
+All 12 answers:
 
 P1: Onboarding & Delivery
-Q1: How long does it take to fully onboard a new client, from signed to everything set up for both client and team?
+Q1: How long is your client onboarding process?
 Answer: ${a(1)}
 
 Q2: How much of your onboarding process is automated right now?
 Answer: ${a(2)}
 
-Q3: How does signing a new client feel right now?
+P2: Visibility & Data
+Q3: Where does most of your operational data actually live?
 Answer: ${a(3)}
 
-Q4: Who delivers your service to clients?
+Q4: How confident are you that your tracking & numbers are accurate right now?
 Answer: ${a(4)}
 
-P2: Visibility & Data
-Q5: Where does most of your operational data actually live?
+P3: Client Performance & Reporting
+Q5: How do you track your clients' campaign performance?
 Answer: ${a(5)}
 
-Q6: How well is your business data structured?
+Q6: How do you report performance to your clients?
 Answer: ${a(6)}
 
-Q7: How confident are you that your revenue numbers are real and accurate right now?
+Q7: Is your client billing and invoicing automated?
 Answer: ${a(7)}
 
-P3: Client Performance & Reporting
-Q8: How do you track the ad campaign results you deliver for clients: spend, leads, cost per result?
+P4: Automation & Systems
+Q8: When something in your operations breaks, how do you find out?
 Answer: ${a(8)}
 
-Q9: How do you report performance to your clients?
+P5: B2B Growth
+Q9: How do you track your own sales pipeline?
 Answer: ${a(9)}
 
-Q10: How automated is your client billing and invoicing?
+Q10: How do you analyse your sales calls?
 Answer: ${a(10)}
 
-P4: Automation & Systems
-Q11: When something in your operations breaks, how do you find out?
+Q11: Could your agency handle doubling revenue tomorrow?
 Answer: ${a(11)}
 
-P5: B2B Growth
-Q12: How do you track your own sales pipeline?
-Answer: ${a(12)}
-
-Q13: How do you analyse your agency's sales calls and team performance?
-Answer: ${a(13)}
-
-Q14: Could your agency handle doubling revenue tomorrow?
-Answer: ${a(14)}
-
 P6: Team & Founder
-Q15: If you took two weeks completely off tomorrow, what would happen?
-Answer: ${a(15)}
+Q12: If you took two weeks completely off tomorrow, what would happen?
+Answer: ${a(12)}
 
 Generate the four sections as specified. Return only the JSON object.`
 }
