@@ -120,6 +120,10 @@ function replacePlaceholdersInRichText(
 
 type ChangedBlock = { id: string; payload: Record<string, unknown> }
 
+function omitNulls(obj: Record<string, unknown>): Record<string, unknown> {
+  return Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== null))
+}
+
 const PATCHABLE_TYPES = [
   'paragraph', 'heading_1', 'heading_2', 'heading_3',
   'bulleted_list_item', 'numbered_list_item', 'quote',
@@ -144,7 +148,7 @@ function collectChangedBlocks(
         if (wasChanged) {
           changed.push({
             id: b.id as string,
-            payload: { [blockType]: { ...typeData, rich_text: typeData.rich_text } },
+            payload: { [blockType]: omitNulls({ ...typeData, rich_text: typeData.rich_text } as Record<string, unknown>) },
           })
         }
       }
