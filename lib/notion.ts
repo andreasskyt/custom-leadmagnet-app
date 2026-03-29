@@ -186,6 +186,7 @@ export async function duplicateAndPopulateTemplate(
   const replacements: Record<string, string> = {
     NAME: contact.name,
     AGENCY: contact.businessName,
+    TEAMSIZE: contact.teamSize ?? '',
     DATE: today,
     P1: String(result.pillarScores.p1),
     P2: String(result.pillarScores.p2),
@@ -264,6 +265,7 @@ export async function duplicateAndPopulateTemplate(
       'P5 — B2B Growth': { number: result.pillarScores.p5 },
       'P6 — Team & Founder': { number: result.pillarScores.p6 },
       'Total Score': { number: result.totalScore },
+      ...(contact.teamSize ? { 'Team Size': { select: { name: contact.teamSize } } } : {}),
     },
   })
 
