@@ -25,9 +25,14 @@ export async function generateAiContent(
   // Strip markdown code fences if present
   const raw = textContent.text.trim().replace(/^```json\s*/i, '').replace(/```\s*$/, '')
 
+  // Escape literal newlines inside JSON string values (Claude sometimes emits real newlines)
+  const sanitized = raw.replace(/"((?:[^"\\]|\\.)*)"/gs, (match) =>
+    match.replace(/\n/g, '\\n').replace(/\r/g, '\\r')
+  )
+
   let parsed: ClaudeResponse
   try {
-    parsed = JSON.parse(raw) as ClaudeResponse
+    parsed = JSON.parse(sanitized) as ClaudeResponse
   } catch {
     throw new Error(`Claude response was not valid JSON: ${raw.slice(0, 200)}`)
   }
