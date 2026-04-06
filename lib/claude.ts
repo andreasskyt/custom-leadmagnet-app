@@ -26,7 +26,7 @@ export async function generateAiContent(
   const raw = textContent.text.trim().replace(/^```json\s*/i, '').replace(/```\s*$/, '')
 
   // Escape literal newlines inside JSON string values (Claude sometimes emits real newlines)
-  const sanitized = raw.replace(/"((?:[^"\\]|\\.)*)"/gs, (match) =>
+  const sanitized = raw.replace(/"((?:[^"\\]|\\.)*)"/g, (match) =>
     match.replace(/\n/g, '\\n').replace(/\r/g, '\\r')
   )
 
