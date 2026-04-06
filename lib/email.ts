@@ -17,7 +17,7 @@ export async function sendAuditEmail(options: {
   }
   const html = buildEmailHtml(options.result, options.contact, options.notionPageUrl)
   await resend.emails.send({
-    from: `Andreas The Systems Guy <${process.env.SMTP_FROM}>`,
+    from: `Andreas, the systems guy <${process.env.SMTP_FROM}>`,
     to: options.to,
     subject: EMAIL_SUBJECT,
     html,
@@ -51,7 +51,7 @@ export async function sendAuditEmail(options: {
   }
   const html = buildEmailHtml(options.result, options.contact, options.notionPageUrl)
   await transporter.sendMail({
-    from: `"Andreas The Systems Guy" <${process.env.SMTP_FROM}>`,
+    from: `"Andreas, the systems guy" <${process.env.SMTP_FROM}>`,
     to: options.to,
     subject: EMAIL_SUBJECT,
     html,
